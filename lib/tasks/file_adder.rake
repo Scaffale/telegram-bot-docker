@@ -23,6 +23,12 @@ namespace :file_adder do
 
   desc 'Compress files in to_convert folder (no overwrite), then run db:seed. No files are deleted or data overwited.'
   task :full do
+    p '@' * 100
+    p ENV['SKIP_FILE_CONVERSION']
+    p ENV['SKIP_FILE_CONVERSION'] == 'true'
+    p ENV['SKIP_FILE_CONVERSION'] == true
+    p '$' * 100
+    return if ENV['SKIP_FILE_CONVERSION'] == 'true'
     Rake::Task["file_adder:compress"].invoke
     Rake::Task["db:seed"].invoke
   end

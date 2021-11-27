@@ -11,6 +11,10 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/rambot
+      - ../rambot/data:/rambot/data
+      - ../rambot/to_convert:/rambot/to_convert
+    environment:
+      SKIP_FILE_CONVERSION: false
     ports:
       - "3000:3000"
     depends_on:

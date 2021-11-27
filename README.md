@@ -1,33 +1,39 @@
-# README
+# telegram-bot on docker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The docker-compose file manages almost everything:
 
-Things you may want to cover:
+`docker-compose up -d`
 
-* Ruby version
-3.0.1
 
-* System dependencies
-ffmpeg
+Before launching it make sure you setted some variables:
 
-* Configuration
-File to be added to the bot must be placed in the `to_convert` folder. Then run `rails file_adder:compress`
+```yml
+db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data <-- the place where the db is saved
+    environment:
+      POSTGRES_USER: user <-- db user
+      POSTGRES_PASSWORD: password <-- db password
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/rambot
+      - /data:/rambot/data <-- folder containing the converted video files
+      - /to_convert:/rambot/to_conver <-- folder containing video and subs to convert and add to the db
+    environment:
+      SKIP_FILE_CONVERSION: false <-- set true to skip file conversion and subs add at startup
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-`rspec`
-
-* Services (job queues, cache servers, search engines, etc.)
-Inserire il cron
-
-* Deployment instructions
-`docker-compose up`
-
-* ...
+**ALSO MAKE SURE THAT:**
+1. File names are without spaces
+2. Subs are with the same name of the video and in `.srt` format
+3.
 
 * TODO list
 - [ ] telegram bot (come env)
