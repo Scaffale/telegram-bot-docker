@@ -1,0 +1,3 @@
+# Unused
+module HomepageHelper
+end
