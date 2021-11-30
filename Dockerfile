@@ -7,6 +7,8 @@ RUN apt-get update -qq && apt-get install -y nodejs postgresql-client ffmpeg
 WORKDIR /rambot
 COPY Gemfile /rambot/Gemfile
 COPY Gemfile.lock /rambot/Gemfile.lock
+# ENV RAILS_ENV production
+
 RUN bundle install
 RUN rails webpacker:install
 

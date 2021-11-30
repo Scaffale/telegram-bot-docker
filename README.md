@@ -15,6 +15,7 @@ db:
     environment:
       POSTGRES_USER: user <-- db user
       POSTGRES_PASSWORD: password <-- db password
+      SERVER_URL: 'your.server/url'
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -29,14 +30,28 @@ db:
     depends_on:
       - db
 ```
+## At first start
 
-**ALSO MAKE SURE THAT:**
+### BUILD
+
+`docker-compose build`
+
+### SET TELEGRAM BOT CREDENTIALS:
+1. Edit the secretes adding the telegram bot token:
+`rails credentials:edit`
+```yml
+telegram:
+  bot:
+    token: XXXX
+    username: XXXX
+    server: https:XXXX
+```
+
+### Also make sure that
 1. File names are without spaces
-2. Subs are with the same name of the video and in `.srt` format
-3.
+1. Subs are with the same name of the video and in `.srt` format
 
 * TODO list
-- [ ] telegram bot (come env)
-- [ ] cron (a startup)
+- [ ] telegram bot (come env) (se fattibile)
 - [ ] far girare in produzione
 - [ ] migliorare il readme

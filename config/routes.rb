@@ -1,4 +1,5 @@
 Rails.application.routes.default_url_options[:host] = ENV['SERVER_URL']
+Rails.application.routes.default_url_options[:protocol] = 'https'
 
 Rails.application.routes.draw do
   root 'homepage#index'
