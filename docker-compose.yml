@@ -8,17 +8,22 @@ services:
       POSTGRES_PASSWORD: password
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/rambot
       - ../rambot/data:/rambot/data
       - ../rambot/to_convert:/rambot/to_convert
       - ../rambot/public_gifs:/rambot/public/gifs
     environment:
-      SKIP_FILE_CONVERSION: false
+      SKIP_FILE_CONVERSION: 'true'
       SERVER_URL: 'your.server/url'
-      TELEGRAM_WEBHOOK_LINK: false
+      TELEGRAM_WEBHOOK_LINK: 'false'
+      PORT: 80
     ports:
+      - "443:443"
+      - "80:80"
+      - "88:88"
+      - "8443:8443"
       - "3000:3000"
     depends_on:
       - db

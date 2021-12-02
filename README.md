@@ -49,6 +49,9 @@ telegram:
     server: https:XXXX
 ```
 
+### Apache2
+
+
 ### Also make sure that
 1. File names are without spaces
 1. Subs are with the same name of the video and in `.srt` format

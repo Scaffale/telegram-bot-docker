@@ -19,7 +19,7 @@ default: &default
   encoding: unicode
   host: db
   username: postgres
-  password: password
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") { 'password' } %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -85,5 +85,3 @@ test:
 production:
   <<: *default
   database: rambot_production
-  username: rambot
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
