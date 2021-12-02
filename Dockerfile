@@ -3,6 +3,7 @@ FROM node:6.7.0
 RUN npm install -g yarn
 FROM ruby:3.0.1
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client ffmpeg
+RUN apt-get update && apt-get install -qq -y --no-install-recommends cron && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /rambot
 COPY Gemfile /rambot/Gemfile
@@ -17,6 +18,7 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
+CMD bash -c "bundle exec whenever --update-crontab && cron -f"
 # RUN rails db:migrate
 
 EXPOSE 3000

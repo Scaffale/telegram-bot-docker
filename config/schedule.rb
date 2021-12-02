@@ -7,6 +7,12 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 #
+ENV.each_key do |key|
+  env key.to_sym, ENV[key]
+end
+
+set :environment, ENV["RAILS_ENV"]
+
 set :chronic_options, hours24: true
 
 every :weekday, at: '7:15 am' do

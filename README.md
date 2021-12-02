@@ -15,7 +15,6 @@ db:
     environment:
       POSTGRES_USER: user # <-- db user
       POSTGRES_PASSWORD: password # <-- db password
-      SERVER_URL: 'your.server/url'
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -26,6 +25,8 @@ db:
       - /gifs:/rambot/public/gifs # <-- folder with the created gifs
     environment:
       SKIP_FILE_CONVERSION: false # <-- set true to skip file conversion and subs add at startup
+      SERVER_URL: 'your.server/url' # <-- server url for the webhook
+      TELEGRAM_WEBHOOK_LINK: false # <-- runs rails telegram:bot:webhook (needs credentials!)
     ports:
       - "3000:3000"
     depends_on:
@@ -38,7 +39,7 @@ db:
 `docker-compose build`
 
 ### SET TELEGRAM BOT CREDENTIALS:
-1. Edit the secretes adding the telegram bot token:
+1. Edit the secretes adding the telegram bot token (inside docker):
 `rails credentials:edit`
 ```yml
 telegram:
