@@ -6,12 +6,15 @@ namespace :file_adder do
   task :compress do
     folder_to_convert = 'to_convert'
     videos = all_videos(folder_name: folder_to_convert)
-    bar = ProgressBar.create(total:videos.count, progress_mark: '#', remainder_mark: '-')
+    bar = ProgressBar.create(total: videos.count, progress_mark: '#', remainder_mark: '-')
     Parallel.each(videos) do |file_name|
       # p "Converto: #{file_name}"
       file_name_clean = file_name_without_extension(file_name)
       # comando per comprimerla bene in webm (stralento)
-      comand = "ffmpeg -n -loglevel warning -i #{Rails.root.join(folder_to_convert, file_name)} -an -crf 32 -vf \"subtitles=#{Rails.root.join(folder_to_convert, file_name_clean)}.srt:force_style='Fontsize=28', scale=trunc(oh*a/2)*2:480, fps=24\" #{Rails.root.join('data', file_name_clean)}.webm"
+      comand = "ffmpeg -n -loglevel warning -i #{Rails.root.join(folder_to_convert,
+                                                                 file_name)} -an -crf 32 -vf \"subtitles=#{Rails.root.join(folder_to_convert,
+                                                                                                                           file_name_clean)}.srt:force_style='Fontsize=28', scale=trunc(oh*a/2)*2:480, fps=24\" #{Rails.root.join('data',
+                                                                                                                                                                                                                                  file_name_clean)}.webm"
       # comando per comprimerla bene in mp4 e vedere se i sottotitoli sono giusti (veloce)
       # speed = 'veryslow'
       # comand = "ffmpeg -n -loglevel info -i #{Rails.root.join('data', file_name)} -codec:v libx264 -preset #{speed} -an -crf 32 -vf \"subtitles=#{Rails.root.join('data', file_name_clean)}.srt:force_style='Fontsize=28', scale=trunc(oh*a/2)*2:480, fps=24\" #{Rails.root.join('data', file_name_clean)}_#{speed}.mp4"
@@ -24,8 +27,8 @@ namespace :file_adder do
   desc 'Compress files in to_convert folder (no overwrite), then run db:seed. No files are deleted or data overwited.'
   task :full do
     if ENV['SKIP_FILE_CONVERSION'] == 'false'
-      Rake::Task["file_adder:compress"].invoke
-      Rake::Task["db:seed"].invoke
+      Rake::Task['file_adder:compress'].invoke
+      Rake::Task['db:seed'].invoke
     end
   end
 

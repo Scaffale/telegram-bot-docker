@@ -8,30 +8,14 @@ gem 'rails'
 
 gem 'pg'
 gem 'puma'
-# Use SCSS for stylesheets
-gem 'sass-rails'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis'
-# Use Active Model has_secure_password
-# gem 'bcrypt'
-gem 'telegram-bot'
-# Use Active Storage variant
-# gem 'image_processing'
-# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap'
-# gem 'autoprefixer-rails'
 gem 'dotenv-rails'
-# gem 'faker'
-gem 'slim'
-# gem 'uglifier'
 gem 'parallel'
+gem 'redis'
 gem 'ruby-progressbar'
+gem 'slim'
+gem 'telegram-bot'
 gem 'whenever', require: false
 
 group :development, :test do
@@ -48,23 +32,13 @@ end
 
 group :development do
   gem 'better_errors'
-
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen'
   gem 'web-console'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  # gem 'spring'
-  # gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
   gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

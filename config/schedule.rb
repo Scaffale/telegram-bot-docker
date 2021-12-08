@@ -11,10 +11,10 @@ ENV.each_key do |key|
   env key.to_sym, ENV[key]
 end
 
-set :environment, ENV["RAILS_ENV"]
+set :environment, ENV['RAILS_ENV']
 
 set :chronic_options, hours24: true
 
 every :weekday, at: '7:15 am' do
-  rake "gifs:optimize"
+  rake 'gifs:optimize'
 end

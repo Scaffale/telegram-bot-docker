@@ -186,7 +186,9 @@ il pensionamento di suo marito</i>
     end
     context 'when to purge' do
       context 'when many to purge' do
-        let(:sentence) { "{pos(190,210)}<i>E' infastidita perche' la festa per il <b>pensionamento</b> di suo marito</i>" }
+        let(:sentence) do
+          "{pos(190,210)}<i>E' infastidita perche' la festa per il <b>pensionamento</b> di suo marito</i>"
+        end
         it { is_expected.to eq %w[e infastidita perche la festa per il pensionamento di suo marito] }
       end
 

@@ -66,12 +66,16 @@ RSpec.describe QueryHelper, type: :helper do
 
     context 'special chararacters' do
       let(:query) { "micheal's     bàchelor \"trauma!? -b 1.2 -a 2.4" }
-      it { is_expected.to eq [%w[b chelor micheal s trauma], { delta_before: 1.2, delta_after: 3.6, file_filter: nil }] }
+      it {
+        is_expected.to eq [%w[b chelor micheal s trauma], { delta_before: 1.2, delta_after: 3.6, file_filter: nil }]
+      }
     end
 
     context 'with also filter option' do
       let(:query) { "micheal's  -f ad   bàchelor \"trauma!? -b 1.2 -a 2.4" }
-      it { is_expected.to eq [%w[b chelor micheal s trauma], { delta_before: 1.2, delta_after: 3.6, file_filter: 'ad' }] }
+      it {
+        is_expected.to eq [%w[b chelor micheal s trauma], { delta_before: 1.2, delta_after: 3.6, file_filter: 'ad' }]
+      }
     end
 
     context 'before and after time calculation' do

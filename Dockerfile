@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
-FROM node:6.7.0
-RUN npm install -g yarn
+FROM node:9
 FROM ruby:3.0.1
+# RUN npm install -g yarn
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client ffmpeg
 RUN apt-get update && apt-get install -qq -y --no-install-recommends cron && rm -rf /var/lib/apt/lists/*
 
@@ -15,7 +15,7 @@ COPY Gemfile /rambot/Gemfile
 COPY Gemfile.lock /rambot/Gemfile.lock
 
 RUN bundle install
-RUN rails webpacker:install
+# RUN rails webpacker:install
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/

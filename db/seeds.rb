@@ -1,7 +1,7 @@
 include SentencesHelper
 
 files_to_add = Dir.glob("#{Rails.root}/to_convert/*.srt")
-bar = ProgressBar.create(total:files_to_add.count, progress_mark: '#', remainder_mark: '-')
+bar = ProgressBar.create(total: files_to_add.count, progress_mark: '#', remainder_mark: '-')
 files_to_add.each do |file|
   file_name = file.split('/').last
   file_name = file_name.split('.srt')[0]
