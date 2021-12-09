@@ -7,7 +7,7 @@ namespace :file_adder do
     folder_to_convert = 'to_convert'
     videos = all_videos(folder_name: folder_to_convert)
     bar = ProgressBar.create(total: videos.count, progress_mark: '#', remainder_mark: '-')
-    Parallel.each(videos) do |file_name|
+    Parallel.each(videos, in_threads: 2) do |file_name|
       # p "Converto: #{file_name}"
       file_name_clean = file_name_without_extension(file_name)
       # comando per comprimerla bene in webm (stralento)

@@ -83,3 +83,5 @@ yarn-debug.log*
 
 to_convert/
 data/
+
+config/credentials.yml.enc
