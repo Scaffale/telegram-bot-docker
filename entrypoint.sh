@@ -8,7 +8,6 @@ rails db:create
 rails db:migrate
 rails file_adder:full
 rails link_webhook
-# whenever --update-crontab
 
 # Then exec the container's main process (what's set as CMD in the Dockerfile).
 exec "$@"
