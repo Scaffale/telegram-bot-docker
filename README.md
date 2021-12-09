@@ -32,7 +32,11 @@ db:
     depends_on:
       - db
 ```
+## Notice
+* All css and js files have been removed (just to avoid assets compile on first run)
+
 ## At first start
+If `SKIP_FILE_CONVERSION` is set to false it will convert videos to `.webm` (without audio, and with some crop) and move them to `data`, then seed `.srt` data from `to_convert` folder.
 
 ### BUILD
 
@@ -50,7 +54,7 @@ telegram:
 ```
 
 ### Apache2
-
+See example
 
 ### Also make sure that
 1. File names are without spaces
@@ -58,5 +62,5 @@ telegram:
 
 * TODO list
 - [ ] telegram bot (come env) (se fattibile)
-- [ ] far girare in produzione
+- [ ] tutti gli url sono senza il path particolare
 - [ ] migliorare il readme

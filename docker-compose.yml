@@ -18,6 +18,7 @@ services:
       SKIP_FILE_CONVERSION: 'true'
       SERVER_URL: 'your.server/url'
       TELEGRAM_WEBHOOK_LINK: 'false'
+      ROOT_PATH: ''
       PORT: 443
     ports:
       - "443:443"

@@ -3,7 +3,7 @@ class Sentence < ApplicationRecord
   def build_gif(extra_params = { delta_before: 0, delta_after: 0 })
     comand = "ffmpeg -ss #{time_start(extra_params[:delta_before]).strftime(time_to_string_ffmpeg)} -loglevel panic -n -i #{Rails.root}/data/#{file_name}.webm -an -c:v libx264 -preset ultrafast -to #{Time.at(time_end(extra_params[:delta_after])).utc.strftime(time_to_string_ffmpeg)} #{Rails.public_path}/gifs/#{new_name(extra_params)}"
     system(comand)
-    "/gifs/#{new_name(extra_params)}"
+    "#{ENV['ROOT_PATH']}/gifs/#{new_name(extra_params)}"
   end
 
   def time_to_string
