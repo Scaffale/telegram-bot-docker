@@ -1,7 +1,7 @@
 h1 The office gif bot!
 h2 rambot version (aka plot_twist_bot)
 p Try the bot:
-= form_with url: request.path, method: :get do |f|
+= form_with url: ENV['ROOT_PATH'], method: :get do |f|
   = f.text_field :text
   = f.submit "Hit me!", name: nil
 
